@@ -9,3 +9,4 @@ out
 
 # Generated
 test/config.h
+.github/docs/generated

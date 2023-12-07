@@ -1,0 +1,19 @@
+name: Documentation
+
+on:
+  #push:
+  #  branches: [master]
+  workflow_dispatch:
+    # nothing here
+
+jobs:
+  deploy-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Docs
+        uses: DenverCoder1/doxygen-github-pages-action@v1.3.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: docs
+          config_file: .github/docs/doxyfile
+          folder: .github/docs/generated/html
