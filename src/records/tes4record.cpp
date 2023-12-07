@@ -4,29 +4,40 @@ TES4Record::TES4Record()
 {
 }
 
-// @todo Remove this macro and figure out a better way to
-// register and detect both kinds of records
-#define READ_RECORD(str, var)		\
-if (strncmp(tag, str, 4) == 0)		\
-{									\
-	buffer.seek(buffer.tell() - 4);	\
-	var.ParseRecord(buffer);		\
-}							
-
-void TES4Record::ReadRecord(BufferStream& buffer)
+void TES4Record::ParseSubRecord(int recordId, BufferStream& buffer)
 {
-	while (buffer.tell() <= Header.DataSize)
+	switch (recordId)
 	{
-		char tag[4];
-		buffer.read(tag);
-
-		READ_RECORD("HEDR", HEDR);
-		READ_RECORD("CNAM", CNAM);
-		READ_RECORD("SNAM", SNAM);
-		READ_RECORD("MAST", MAST);
+	case 'HEDR':
+	{
+		HEDR.ParseRecord(buffer);
+		break;
 	}
-
-	int test = 0;
+	case 'CNAM':
+	{
+		CNAM.ParseRecord(buffer);
+		break;
+	}
+	case 'SNAM':
+	{
+		SNAM.ParseRecord(buffer);
+		break;
+	}
+	case 'MAST':
+	{
+		StringSubRecord LocalMast;
+		LocalMast.ParseRecord(buffer);
+		MAST.push_back(LocalMast);
+		break;
+	}
+	// This will skip DATA blocks, which in FO3/NV we don't care about
+	// @todo For morrowind we need to parse this block
+	default:
+		// Skip record tag as we step back in BaseRecord::ReadRecord
+		buffer.skip(4);
+		buffer.skip(buffer.read<uint16_t>());
+		break;
+	}
 }
 
 void TES4Record::HEDRSubRecord::ReadRecord(BufferStream& buffer)

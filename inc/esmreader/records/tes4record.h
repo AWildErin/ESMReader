@@ -34,9 +34,9 @@ public:
 	/** Description */
 	StringSubRecord SNAM;
 
-	/** Master: The file name of a master plugin */
-	StringSubRecord MAST;
+	/** Master: The file name of master plugins */
+	std::vector<StringSubRecord> MAST;
 
 protected:
-	void ReadRecord(BufferStream& buffer) override;
+	void ParseSubRecord(int recordId, BufferStream& buffer);
 };

@@ -82,11 +82,17 @@ public:
 
     const RecordHeader GetHeader() { return Header; }
 protected:
-	virtual void ReadRecord(BufferStream& buffer) = 0;
+
+    /**
+    * Ran for each sub-record detected in a record
+    * @param integer value of the record tag
+    */
+    virtual void ParseSubRecord(int recordId, BufferStream& buffer) = 0;
 
     RecordHeader Header;
 
     BufferStream ESMBuffer;
 private:
+    void ReadRecord(BufferStream& buffer);
 	void ReadHeader(BufferStream& buffer);
 };
