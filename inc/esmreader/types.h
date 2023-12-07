@@ -6,6 +6,7 @@
  
 #include <string>
 #include <vector>
+#include <map>
 #include <fstream>
 #include <iostream>
 
@@ -24,3 +25,9 @@ struct RGBA
 	{
 	}
 };
+
+/**
+* Utility methods, declared in utility.cpp
+*/
+
+int TagInt(char tag[4]);

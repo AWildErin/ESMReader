@@ -12,6 +12,7 @@ void BaseRecord::ParseRecord(BufferStream& buffer)
 {
 	// Save a reference to our ESM buffer
 	ESMBuffer = buffer;
+	Offset = buffer.tell();
 
 	ReadHeader(buffer);
 
@@ -32,7 +33,7 @@ void BaseRecord::ReadRecord(BufferStream& buffer)
 
 		std::cout << "Found " << tag[0] << tag[1] << tag[2] << tag[3] << "\n";
 
-		int tagId = tag[3] + (tag[2] << 8) + (tag[1] << 16) + (tag[0] << 24);
+		int tagId = TagInt(tag);
 		buffer.seek(buffer.tell() - 4);
 
 		ParseSubRecord(tagId, buffer);

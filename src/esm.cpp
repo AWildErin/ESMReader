@@ -26,7 +26,25 @@ bool ESM::Open(const std::string& filePath)
 
 	BufferStream Stream(reinterpret_cast<std::byte*>(buffer.data()), length);
 
+	// The first record is always going to be TES4
+	// @todo introduce some checking here
 	PluginTES4Record.ParseRecord(Stream);
+
+	while (Stream.tell() != length)
+	{
+		int start = Stream.tell();
+
+		BaseGroup grup;
+		grup.ParseGroup(Stream);
+
+		// @todo Can we do this better?
+		char tag[4] = { (char)grup.Label[0], (char)grup.Label[1], (char)grup.Label[2], (char)grup.Label[3] };
+		int tagId = TagInt(tag);
+
+		Groups[tagId] = grup;
+	}
+
+	BaseGroup WRLD = Groups['WRLD'];
 
 	return true;
 }

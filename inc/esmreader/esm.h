@@ -4,6 +4,7 @@
 
 // @todo Should we maybe just make a records.h that is precompiled?
 #include "esmreader/records/tes4record.h"
+#include "esmreader/group.h"
 
 // @todo Add game enum so we can allow for multiple games in 1 record
 class ESM
@@ -19,7 +20,6 @@ public:
 	*/
 	bool Open(const std::string& filePath);
 
-
 	const std::string& GetFullPath() { return FullPath; }
 	const std::string& GetFileName() { return FileName; }
 	const TES4Record& GetTES4Record() { return PluginTES4Record; }
@@ -29,5 +29,6 @@ private:
 
 	TES4Record PluginTES4Record;
 
-	//std::vector<BaseRecord> Records;
+	/** key is int value of the Group tag. Example: 'WRLD'. */
+	std::map<int, BaseGroup> Groups;
 };

@@ -95,4 +95,7 @@ protected:
 private:
     void ReadRecord(BufferStream& buffer);
 	void ReadHeader(BufferStream& buffer);
+
+    /** Offset to this record relative to the start of the file */
+    size_t Offset;
 };

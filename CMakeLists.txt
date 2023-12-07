@@ -6,12 +6,16 @@ option(BUILD_TESTS "Build tests for the ESM Reader" ON)
 
 set(ESM_SRC
 	${CMAKE_CURRENT_LIST_DIR}/inc/esmreader/types.h
+	${CMAKE_CURRENT_LIST_DIR}/src/utility.cpp
 
 	${CMAKE_CURRENT_LIST_DIR}/inc/esmreader/bufferstream.h
 	${CMAKE_CURRENT_LIST_DIR}/src/bufferstream.cpp
 
 	${CMAKE_CURRENT_LIST_DIR}/inc/esmreader/esm.h
 	${CMAKE_CURRENT_LIST_DIR}/src/esm.cpp
+
+	${CMAKE_CURRENT_LIST_DIR}/inc/esmreader/group.h
+	${CMAKE_CURRENT_LIST_DIR}/src/group.cpp
 
     # Records
 	${CMAKE_CURRENT_LIST_DIR}/inc/esmreader/records/baserecord.h
