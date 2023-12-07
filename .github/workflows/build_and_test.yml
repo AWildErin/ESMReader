@@ -11,9 +11,10 @@ jobs:
   build-msvc:
     strategy:
       matrix:
-        build_type: [Debug, Release]
-    runs-on: windows-latest
+        #build_type: [Debug, Release]
+        build_type: [Release]
 
+    runs-on: windows-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
