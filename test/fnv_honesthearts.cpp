@@ -33,5 +33,5 @@ TEST_F(FNV_HonestHearts, TES4Record)
     EXPECT_STREQ(Rec.SNAM.String.c_str(), "");
 
     /* Master File */
-    EXPECT_STREQ(Rec.MAST.String.c_str(), "FalloutNV.esm");
+    EXPECT_STREQ(Rec.MAST[0].String.c_str(), "FalloutNV.esm");
 }

@@ -34,5 +34,5 @@ TEST_F(AnchorageTest, TES4Record)
     EXPECT_STREQ(Rec.SNAM.String.c_str(), "");
 
     /* Master File */
-    EXPECT_STREQ(Rec.MAST.String.c_str(), "Fallout3.esm");
+    EXPECT_STREQ(Rec.MAST[0].String.c_str(), "Fallout3.esm");
 }
