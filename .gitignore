@@ -8,4 +8,4 @@ cmake-build-*/
 out
 
 # Generated
-test/Config.h
+test/config.h
