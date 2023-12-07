@@ -20,8 +20,9 @@ public:
 	std::vector<std::byte> Data;
 
 	// @todo Pass type so we can give it to the header
-	void ParseRecord(BufferStream& buffer);
+	virtual void ParseRecord(BufferStream& buffer);
 
 protected:
+	/** Override this in your SubRecord to deserialize it */
 	virtual void ReadRecord(BufferStream& buffer) = 0;
 };

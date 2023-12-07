@@ -35,7 +35,7 @@ public:
 	StringSubRecord SNAM;
 
 	/** Master: The file name of master plugins */
-	std::vector<StringSubRecord> MAST;
+	CollectionSubRecord<StringSubRecord> MAST;
 
 protected:
 	void ParseSubRecord(int recordId, BufferStream& buffer);

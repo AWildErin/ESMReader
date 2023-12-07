@@ -25,9 +25,7 @@ void TES4Record::ParseSubRecord(int recordId, BufferStream& buffer)
 	}
 	case 'MAST':
 	{
-		StringSubRecord LocalMast;
-		LocalMast.ParseRecord(buffer);
-		MAST.push_back(LocalMast);
+		MAST.ParseRecord(buffer);
 		break;
 	}
 	// This will skip DATA blocks, which in FO3/NV we don't care about
